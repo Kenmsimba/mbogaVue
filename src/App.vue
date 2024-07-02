@@ -18,7 +18,7 @@
     </div>
   </header>
 
-  <router-view :inventory="inventory"/>
+  <router-view :inventory="inventory" :addToCart="addToCart" />
   <sidebar
     v-if="showSidebar"
     :toggle-sidebar="toggleSidebar"
@@ -52,12 +52,12 @@ export default {
     }
   },
   methods: {
-    addToCart (name, index) {
+    addToCart (name, quantity) {
       // if the item doesnt exist in cart, set the count to zero
       if (!this.cart[name]) this.cart[name] = 0
       // add the selected number of items to cart
-      this.cart[name] += this.inventory[index].quantity
-      this.inventory[index].quantity = 0
+      this.cart[name] += quantity // this.inventory[index].quantity
+      // this.inventory[index].quantity = 0
     },
     toggleSidebar () {
       this.showSidebar = !this.showSidebar
